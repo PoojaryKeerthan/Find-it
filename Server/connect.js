@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-
-const uri = "mongodb+srv://Keerthan:KeerthanDb@cluster0.pyjtf.mongodb.net/todoDB?retryWrites=true&w=majority&appName=Cluster0";
+import 'dotenv/config';
+const uri = process.env.MONGO_DB_URI;
 
 const ConnectDatabase = async () => {
     try {
@@ -10,7 +10,7 @@ const ConnectDatabase = async () => {
         });
         console.log("MongoDB Connected Successfully");
     } catch (error) {
-        console.error("❌ MongoDB Connection Error:", error);
+        console.error(" MongoDB Connection Error:", error);
         process.exit(1);  
     }
 };
