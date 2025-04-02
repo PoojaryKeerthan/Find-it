@@ -17,15 +17,10 @@ const signup = async(req,res,next)=>{
         });
         await newUser.save();
         const token = jwt.sign({_id:newUser._id},process.env.SECRET_KEY,{expiresIn:"90d"})
-        res.status(200).json({
-            status: 'success',
-            message: 'User registered successfully',
-            token: token,
-            username : newUser.name,
-            userId : newUser._id,
-            email : newUser.email,
-            role : newUser.role
-        })
+        res.status(201).json({
+            status: "success",
+            message: "User registered successfully. Please log in.",
+        });
     }
     catch(err){
         next(err)
@@ -43,7 +38,13 @@ const login = async(req,res,next)=>{
         if(!isMatch){
             return next(new createError('Invalid credentials',401));
         }
-        const token = jwt.sign({_id:user._id},"secretkey1234",{expiresIn:"90d"})
+        const token = jwt.sign({_id:user._id},process.env.SECRET_KEY,{expiresIn:"90d"})
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production", 
+            sameSite: "strict", 
+            maxAge: 90 * 24 * 60 * 60 * 1000 
+        });
         res.status(200).json({
             status:'success',
             message: 'User logged in successfully',
