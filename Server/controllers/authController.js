@@ -16,7 +16,7 @@ const signup = async(req,res,next)=>{
             password: hashPassword
         });
         await newUser.save();
-        const token = jwt.sign({_id:newUser._id},"secretkey1234",{expiresIn:"90d"})
+        const token = jwt.sign({_id:newUser._id},process.env.SECRET_KEY,{expiresIn:"90d"})
         res.status(200).json({
             status: 'success',
             message: 'User registered successfully',
