@@ -10,20 +10,10 @@ const app = express();
 //MIDLEWARE
 app.use(express.json());
 app.use(cors());
-
+app.use(express.urlencoded({ extended: true }));
 
 //Dbconnection
 ConnectDatabase();
-
-//globalerror handler
-app.use((err, req, res, next) => {
-   err.statuCode = res.statusCode || 500;
-   err.status = err.status || "error";
-   res.status(err.statuCode).json({
-    status:err.status,
-    message:err.message,
-   })
-});
 
 //Routes
 app.use('/api/users', authRoutes);

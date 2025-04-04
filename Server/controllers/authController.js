@@ -1,61 +1,82 @@
 import User from "../models/UserModel.js"
-import createError from "../utils/appError.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-const signup = async(req,res,next)=>{
-    try{
-        const user = await User.findOne({email:req.body.email})
-        if(user){
-            return next(new createError('user already exists',400));
+const signup = async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.body.email });
+        if (user) {
+            return res.status(400).json({ status: "fail", message: "User already exists" });
         }
-        const hashPassword = await bcrypt.hash(req.body.password,12);
+
+        if (!req.body.username) {
+            return res.status(400).json({ status: "fail", message: "Username required" });
+        }
+
+        const hashPassword = await bcrypt.hash(req.body.password, 12);
         const newUser = new User({
-            name: req.body.name,
+            username: req.body.username,
             email: req.body.email,
             password: hashPassword
         });
+
         await newUser.save();
-        const token = jwt.sign({_id:newUser._id},process.env.SECRET_KEY,{expiresIn:"90d"})
-        res.status(201).json({
+        return res.status(201).json({
             status: "success",
             message: "User registered successfully. Please log in.",
         });
+    } catch (err) {
+        console.error("Signup Error:", err.message);
+        if (err.code === 11000 && err.keyPattern && err.keyPattern.username) {
+            return res.status(400).json({ message: "Username already exists" });
+        }
+        return res.status(500).json({ status: "error", message: "Something went wrong!" });
     }
-    catch(err){
-        next(err)
-    }
-}
+};
 
-const login = async(req,res,next)=>{
+
+
+const login = async (req, res) => {
     try {
-        const {email,password} = req.body
-        const user = await User.findOne({email})
-        if(!user){
-            return next(new createError('User not found',404));
+        const { Email, Password } = req.body;
+        console.log(Email,Password);
+        
+        // Check if the user exists
+        const user = await User.findOne({ Email:Email });
+        if (!user) {
+            return res.status(404).json({ status: "fail", message: "User not found" });
         }
-        const isMatch = await bcrypt.compare(password,user.password)
-        if(!isMatch){
-            return next(new createError('Invalid credentials',401));
+
+        // Check if the password matches
+        const isMatch = await bcrypt.compare(Password, user.password);
+        if (!isMatch) {
+            return res.status(401).json({ status: "fail", message: "Invalid credentials" });
         }
-        const token = jwt.sign({_id:user._id},process.env.SECRET_KEY,{expiresIn:"90d"})
+
+        // Generate JWT token
+        const token = jwt.sign(
+            { _id: user._id, email: user.email },
+            process.env.SECRET_KEY,
+            { expiresIn: "90d" }
+        );
+
+        // Set token as a cookie
         res.cookie("token", token, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production", 
-            sameSite: "strict", 
-            maxAge: 90 * 24 * 60 * 60 * 1000 
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 90 * 24 * 60 * 60 * 1000
         });
-        res.status(200).json({
-            status:'success',
-            message: 'User logged in successfully',
-            token: token,
-            username : user.name,
-            userId : user._id,
-            email : user.email,
-            role : user.role
-        })
+
+        // Send success response
+        return res.status(201).json({
+            status: "success",
+            message: "User logged in successfully",
+        });
     } catch (error) {
-        next(error);
+        console.error("Login Error:", error.message);
+        return res.status(500).json({ status: "error", message: "Something went wrong!" });
     }
-}
-export default {signup,login}
+};
+
+export default { signup, login }
