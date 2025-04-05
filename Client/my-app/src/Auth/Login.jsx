@@ -27,14 +27,21 @@ const Login = () => {
         const response = await axios.post(" http://localhost:3000/api/users/login", {
           Email,
           Password,
-        });
+        },
+        {withCredentials:true});
         if (response.status === 201) {
-          navigate("/login"); // Redirect on success
+          navigate("/"); // Redirect on success
       }
       }
       catch (err) {
         setIsLoading(false)
-        setErrorMessage(err.response.data.message);
+        if (err.response) {
+          setErrorMessage(err.response.data.message || "Something went wrong!");
+      } else if (err.request) {
+          setErrorMessage("No response from server. Check your internet or server.");
+      } else {
+          setErrorMessage("An unexpected error occurred.");
+      }
       }
     };
   }
