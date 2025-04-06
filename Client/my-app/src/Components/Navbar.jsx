@@ -30,10 +30,10 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-6 items-center">
-            <a href="#" className="text-gray-700 dark:text-white hover:underline">Home</a>
-            <a href="#" className="text-gray-700 dark:text-white hover:underline">Browse</a>
-            <a href="#" className="text-gray-700 dark:text-white hover:underline">Lost & Found</a>
-            <a href="#" className="text-gray-700 dark:text-white hover:underline">Contact</a>
+            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Home</a>
+            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Browse</a>
+            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Lost & Found</a>
+            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Contact</a>
             <img className="w-8 h-8 rounded-full" src="https://i.pravatar.cc/150?img=3" alt="avatar" />
           </div>
         </div>
