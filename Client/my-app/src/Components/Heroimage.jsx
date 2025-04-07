@@ -57,10 +57,10 @@ const Heroimage = () => {
                 </div>
             </div>
             <div className="flex justify-center gap-x-5">
-            <button className="mt-6 px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition hover:cursor-pointer">
+            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer">
              Add Lost-item
             </button>
-            <button className="mt-6 px-6 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition hover:cursor-pointer">
+            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer">
              Add found-item
             </button>
           </div>
