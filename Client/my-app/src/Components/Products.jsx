@@ -23,7 +23,7 @@ const fakeFoundItems = Array.from({ length: 4 }, (_, i) => ({
 
 const Products = () => {
   return (
-    <div className="px-6 py-10 mt-20 bg-gray-300 min-h-screen">
+    <div className="px-6 py-10 mt-5 bg-gray-300 min-h-screen">
       {/* Desktop View */}
       <div className="hidden lg:flex gap-10">
         {/* Lost Items */}

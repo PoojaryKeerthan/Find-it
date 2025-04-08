@@ -11,7 +11,7 @@ const ProductCard = (props) => {
         <p><b>Location</b>:{props.items.location}</p>
         <p><b>Date:</b>:{props.items.date}</p>
         <div className="flex justify-between items-center mt-4">
-          <button className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400">Learn More</button>
+          <button className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-pointer">View Details</button>
         </div>
       </div>
     </div>

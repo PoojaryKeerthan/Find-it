@@ -3,16 +3,18 @@ import Particles from "react-tsparticles";
 import { loadStarsPreset } from "tsparticles-preset-stars";
 import { useCallback } from "react";
 import HeroIamge from '../Assets/Image.jpg'
+import { useNavigate } from 'react-router-dom';
 const Heroimage = () => {
+    const navigate  = useNavigate();
     const particlesInit = useCallback(async (engine) => {
         await loadStarsPreset(engine);
     }, []);
     return (
-        <div >
-            <div className="absolute inset-0 -z-10">
+        <div className='mb-10'>
+            <div className="absolute inset-0 -z-10 ">
                 <Particles
                     width="100%"
-                    height="500px"
+                    height="600px"
                     // className="h-screen"
                     // divId="particles-js"
                     // style={{ position: "absolute" }}
@@ -57,10 +59,14 @@ const Heroimage = () => {
                 </div>
             </div>
             <div className="flex justify-center gap-x-5">
-            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer">
+            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer"
+            onClick={()=>navigate('/Addlostproduct')}
+            >
              Add Lost-item
             </button>
-            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer">
+            <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer"
+             onClick={()=>navigate('/Addfoundproduct')}
+            >
              Add found-item
             </button>
           </div>

@@ -5,6 +5,7 @@ import { setUser } from '../Redux/slices/authSlice';
 import Navbar from '../Components/Navbar';
 import Heroimage from '../Components/Heroimage';
 import Products from '../Components/Products';
+import Footer from '../Components/Footer';
 axios.defaults.withCredentials = true;
 const Home = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,7 @@ const Home = () => {
       <Navbar />
       <Heroimage />
       <Products/>
-
+      <Footer/>
     </>
   )
 }
