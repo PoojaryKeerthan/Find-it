@@ -10,26 +10,31 @@ axios.defaults.withCredentials = true;
 const Home = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  console.log(user);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/")
-        dispatch(setUser(res.data.user));
-
-
+        const res = await axios.get("http://localhost:3000/");
+        if (res.data.user) {
+          dispatch(setUser(res.data.user));
+        }
       } catch (error) {
-        console.error("Error fetching data", error);
+        console.error("Error fetching user data", error);
       }
+    };
+
+    if (!user) {
+      fetchData();
     }
-    fetchData();
-  })
+  }, [dispatch, user]);
   return (
     // <div>{user ? JSON.stringify({ id: user.id, name: user.name, email: user.email }):"no user"}</div>
     <>
       <Navbar />
       <Heroimage />
-      <Products/>
-      <Footer/>
+      <Products />
+      <Footer />
     </>
   )
 }

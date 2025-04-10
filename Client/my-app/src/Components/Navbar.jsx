@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
-
+import { useSelector } from "react-redux";
 const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
+     const user = useSelector((state) => state.auth.user);
   return (
     <div>
         <nav className="bg-white shadow dark:bg-gray-800 relative z-50">
@@ -30,7 +31,7 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex space-x-6 items-center">
-            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Home</a>
+            <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">{user?user.email:"null"}</a>
             <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Browse</a>
             <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Lost & Found</a>
             <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400">Contact</a>

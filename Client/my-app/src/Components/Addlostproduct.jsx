@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import Navbar from '../Components/Navbar';
 import Footer from '../Components/Footer';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 const Addlostproduct = () => {
+  const navigate = useNavigate();
+
+
   const [ProductName, setProductName] = useState('');
   const [Contact, setContact] = useState('');
   const [Location, setLocation] = useState('');
@@ -13,7 +17,8 @@ const Addlostproduct = () => {
   const [Date, setDate] = useState('');
   const [Image, setImage] = useState(null);
   const [errors, setErrors] = useState({});
-
+  const [loading, setLoading] = useState(false);
+  const [errormessage, seterrormessage] = useState('');
   const validate = () => {
     const newErrors = {};
 
@@ -29,7 +34,7 @@ const Addlostproduct = () => {
     return newErrors;
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validate();
     setErrors(validationErrors);
@@ -37,7 +42,6 @@ const Addlostproduct = () => {
     if (Object.keys(validationErrors).length > 0) {
       return;
     }
-
     const formData = new FormData();
     formData.append("ProductName", ProductName);
     formData.append("Contact", Contact);
@@ -49,31 +53,42 @@ const Addlostproduct = () => {
     formData.append("Image", Image);
 
     try {
-      const response = await axios.post("http://localhost:5000/api/lost-item", formData, {
+      seterrormessage('');
+      setLoading(true);
+      const response = await axios.post("http://localhost:3000/addproducts/lost-products", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
-    
-      alert("Lost item added successfully!");
-      console.log("Response:", response.data);
-    
-      // Optional: reset form
-      setProductName("");
-      setContact("");
-      setLocation("");
-      setAddress("");
-      setCategory("");
-      setDescription("");
-      setDate("");
-      setImage(null);
-      setErrors({});
-    } catch (error) {
-      console.error("Submission error:", error);
-      alert("Something went wrong. Please try again.");
-    }
-    
 
+      const { success, message } = response.data;
+
+      if (success) {
+        setLoading(false);
+        setProductName("");
+        setContact("");
+        setLocation("");
+        setAddress("");
+        setCategory("");
+        setDescription("");
+        setDate("");
+        setImage(null);
+        setErrors({});
+
+        setTimeout(() => {
+          toast.success("Item successfully added!");
+          navigate("/");
+        }, 1500);
+      }
+      else {
+        seterrormessage(message);
+      }
+
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      seterrormessage("something went wrong Server is not responding..");
+    }
   };
 
   const inputStyle = "p-3 rounded-md bg-gray-300 focus:outline-none w-full";
@@ -82,9 +97,20 @@ const Addlostproduct = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-[#f0e7e7] min-h-screen">
-        <div className="max-w-screen-xl mx-auto px-4 py-8">
+      <div className="bg-[#f0e7e7] min-h-screen relative">
+        <div className="max-w-screen-xl mx-auto px-4 py-8 z-0">
           <form onSubmit={handleSubmit} className="bg-[#f0e7e7] shadow-lg rounded-2xl p-4 sm:p-6 w-full overflow-hidden">
+
+          {loading && (
+          <div className="absolute inset-0 backdrop-blur-sm flex justify-center items-center rounded-2xl z-20">
+            <div className="flex flex-row gap-2">
+              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce" />
+              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.3s]" />
+              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]" />
+            </div>
+          </div>
+        )}
+
             <h2 className="text-2xl md:text-3xl font-bold text-black mb-6 text-center">
               Add the Lost-item details:
             </h2>
@@ -192,7 +218,11 @@ const Addlostproduct = () => {
                 {errors.Image && <span className={errorStyle}>{errors.Image}</span>}
               </div>
             </div>
-
+            <div>
+              {errormessage && (
+                <p className="text-red-600 text-center mt-4">{errormessage}</p>
+              )}
+            </div>
             <div className="flex justify-center mt-6">
               <button
                 type="submit"
@@ -203,10 +233,10 @@ const Addlostproduct = () => {
             </div>
           </form>
         </div>
-
       </div>
       <Footer />
     </>
+
   );
 };
 
