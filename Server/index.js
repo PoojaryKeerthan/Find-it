@@ -36,7 +36,7 @@ app.get('/',verifyToken, async(req, res) => {
         user: req.user ? { id: req.user.id,name: req.user.name, email: req.user.email } : null,
     });
 } catch (error) {
-    res.status(500).json({ message: "Error fetching data" });
+    res.status(500).json({ message: "Error fetching in data" });
 }
 })
 
