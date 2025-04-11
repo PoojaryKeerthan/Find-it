@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -45,6 +47,7 @@ const Register = () => {
 
   return (
     <>
+    <Navbar/>
     {
       loading && 
       <div className="absolute inset-0 flex items-center justify-center bg-white/30 backdrop-blur-sm rounded-lg">
@@ -57,8 +60,8 @@ const Register = () => {
     }
     <div className="flex justify-center items-center min-h-screen lg:h-[700px] bg-gray-100 p-4">
       <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl lg:h-[600px]">
-        <div className="w-full md:w-1/2 p-8 pt-30">
-          <h2 className="text-4xl font-bold mb-4 pl-20 lg:pl-32">Sign up</h2>
+        <div className="w-full md:w-1/2 p-8 lg:pt-38 ">
+          <h2 className="text-4xl font-bold mb-4 pl-18 lg:pl-32">Sign up</h2>
 
           <input
             type="text"
@@ -101,7 +104,7 @@ const Register = () => {
           </div>
         
 
-          <button className="w-full bg-red-500 text-white p-3 rounded hover:bg-red-600" onClick={handleRegister}>
+          <button className="w-full bg-red-500 text-white p-3 rounded hover:bg-red-600 hover:cursor-pointer" onClick={handleRegister}>
             Register
           </button>
         </div>
@@ -111,12 +114,13 @@ const Register = () => {
           <p className="text-center mb-4">
             Already have an account? Sign in to access your dashboard and explore more features.
           </p>
-          <button className="border border-white px-6 py-2 rounded hover:bg-white hover:text-red-500" onClick={() => navigate('/Login')}>
+          <button className="border border-white px-6 py-2 rounded hover:bg-white hover:text-red-500 hover:cursor-pointer" onClick={() => navigate('/Login')}>
             SIGN IN
           </button>
         </div>
       </div>
     </div>
+    <Footer/>
     </>
   );
 };
