@@ -25,6 +25,7 @@ const foundproducts = async (req, res) => {
                     Condition,
                     Reported,
                     Date,
+                    UserId,
                 } = req.body;
                 const newFoundItem = new FoundItemdb({
                     ProductName,
@@ -37,7 +38,8 @@ const foundproducts = async (req, res) => {
                     Condition:Condition,
                     Reported:Reported,
                     ImageURL: imageUrl,
-                    Status: false
+                    Status: false,
+                    user:UserId,
                 })
                 await newFoundItem.save();
                 res.status(201).json({
@@ -75,6 +77,7 @@ const lostproducts = async (req, res) => {
                     Category,
                     Description,
                     Date,
+                    UserId,
                 } = req.body;
                 const newLostItem = new Lostitemdb({
                     ProductName,
@@ -85,7 +88,8 @@ const lostproducts = async (req, res) => {
                     Description,
                     Date,
                     ImageURL: imageUrl,
-                    Status: false
+                    Status: false,
+                    user:UserId,
                 });
                 await newLostItem.save();
                 res.status(201).json({

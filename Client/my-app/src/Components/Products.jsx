@@ -23,12 +23,12 @@ const fakeFoundItems = Array.from({ length: 4 }, (_, i) => ({
 
 const Products = () => {
   return (
-    <div className="px-6 py-10 mt-5 bg-gray-300 min-h-screen">
+    <div className="px-6 py-10 mt-5 bg-gray-300 min-h-screen" >
       {/* Desktop View */}
       <div className="hidden lg:flex gap-10">
         {/* Lost Items */}
         <div className="w-1/2">
-          <h2 className="text-center text-3xl font-bold text-pink-600 mb-6">Lost Items</h2>
+          <h2 className="text-center text-3xl font-bold text-pink-600 mb-6" >Lost Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {fakeLostItems.map((item) => (
               // <ItemCard key={item.id} {...item} />

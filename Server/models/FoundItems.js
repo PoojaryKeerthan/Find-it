@@ -13,6 +13,11 @@ const FoundItemSchema = new mongoose.Schema({
     Condition : { type: String, required: true },
     Reported : { type: String, required: true },
     Status: { type: Boolean, default: false },
+     user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
+            required: true
+          },
 },{ timestamps: true })
 
 const FoundItemdb = mongoose.model("FoundItems", FoundItemSchema); 

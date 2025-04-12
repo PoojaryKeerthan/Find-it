@@ -4,9 +4,10 @@ import Footer from '../Components/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 const Addlostproduct = () => {
   const navigate = useNavigate();
-
+  const user = useSelector((state) => state.auth.user);
 
   const [ProductName, setProductName] = useState('');
   const [Contact, setContact] = useState('');
@@ -51,6 +52,7 @@ const Addlostproduct = () => {
     formData.append("Description", Description);
     formData.append("Date", Date);
     formData.append("Image", Image);
+    formData.append("UserId", user.id);
 
     try {
       seterrormessage('');

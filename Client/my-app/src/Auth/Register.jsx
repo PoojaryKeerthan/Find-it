@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import toast from "react-hot-toast";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -35,7 +36,10 @@ const Register = () => {
             });
 
             if (response.status === 201) {
-                navigate("/login"); // Redirect on success
+                toast.success("Registration Successfull");
+                setTimeout(() => {
+                  navigate("/login");
+                }, 1500); // Redirect on success
             }
         } catch (error) {
           setLoading(false);
@@ -58,7 +62,7 @@ const Register = () => {
       </div>
     </div>
     }
-    <div className="flex justify-center items-center min-h-screen lg:h-[700px] bg-gray-100 p-4">
+    <div className="flex justify-center items-center min-h-screen lg:h-[700px] bg-gray-100 p-4 mt-8">
       <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-4xl lg:h-[600px]">
         <div className="w-full md:w-1/2 p-8 lg:pt-38 ">
           <h2 className="text-4xl font-bold mb-4 pl-18 lg:pl-32">Sign up</h2>

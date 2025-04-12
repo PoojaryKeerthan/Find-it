@@ -2,3 +2,6 @@
 body {
     font-family: 'Ysabeau SC', sans-serif;
   }
+  html {
+    scroll-behavior: smooth;
+  }

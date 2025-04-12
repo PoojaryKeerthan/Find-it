@@ -11,6 +11,11 @@ const LostItemSchema = new mongoose.Schema({
     ImageURL : { type: String, required: true },
     Date : { type: String, required: true },
     Status: { type: Boolean, default: false },
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+      }
 },{ timestamps: true })
 
 const Lostitemdb = mongoose.model("LostItems", LostItemSchema); 

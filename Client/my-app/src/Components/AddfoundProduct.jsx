@@ -4,9 +4,11 @@ import Footer from './Footer'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
 
 const AddfoundProduct = () => {
   const navigate = useNavigate();
+  const user = useSelector((state) => state.auth.user);
 
   const [ProductName, setProductName] = useState('');
   const [Contact, setContact] = useState('');
@@ -58,6 +60,7 @@ const AddfoundProduct = () => {
     formData.append("Image", Image);
     formData.append("Condition", Condition);
     formData.append("Reported", Reported);
+    formData.append("UserId", user.id);
 
     try {
       seterrormessage('');

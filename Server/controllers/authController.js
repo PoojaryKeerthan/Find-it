@@ -40,8 +40,8 @@ const login = async (req, res) => {
     try {
         const { Email, Password } = req.body;
         // Check if the user exists
-        const user = await User.findOne({ email:Email });
-        
+        const user = await User.findOne({ email: Email });
+
         if (!user) {
             return res.status(404).json({ status: "fail", message: "User not found" });
         }
@@ -54,7 +54,7 @@ const login = async (req, res) => {
 
         // Generate JWT token
         const token = jwt.sign(
-            { id: user._id.toString(), email: user.email,name:user.username,},
+            { id: user._id.toString(), email: user.email, name: user.username, },
             process.env.SECRET_KEY,
             { expiresIn: "90d" }
         );
@@ -62,11 +62,11 @@ const login = async (req, res) => {
         // Set token as a cookie
         res.cookie("token", token, {
             httpOnly: true,
-            secure: true, 
-            sameSite: "None", 
-            maxAge: 90 * 24 * 60 * 60 * 1000 
+            secure: true,
+            sameSite: "None",
+            maxAge: 90 * 24 * 60 * 60 * 1000
         });
-        
+
 
         // Send success response
         return res.status(201).json({
@@ -78,5 +78,17 @@ const login = async (req, res) => {
         return res.status(500).json({ status: "error", message: "Something went wrong!" });
     }
 };
+const logout = (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+    });
 
-export default { signup, login }
+    return res.status(200).json({
+        status: "success",
+        message: "Logged out successfully",
+    });
+};
+
+export default { signup, login, logout }

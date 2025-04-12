@@ -10,7 +10,7 @@ const Heroimage = () => {
         await loadStarsPreset(engine);
     }, []);
     return (
-        <div className='mb-10'>
+        <div className='mb-10 mt-30'>
             <div className="absolute inset-0 -z-10 ">
                 <Particles
                     width="100%"
@@ -66,6 +66,7 @@ const Heroimage = () => {
             </button>
             <button className="mt-6 px-6 py-2 bg-gray-700 text-white rounded hover:bg-gray-800 transition hover:cursor-pointer"
              onClick={()=>navigate('/Addfoundproduct')}
+             id="products"
             >
              Add found-item
             </button>

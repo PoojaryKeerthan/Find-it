@@ -16,6 +16,8 @@ import axios from 'axios'
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
+  console.log(user);
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
