@@ -19,7 +19,6 @@ const AddfoundProduct = () => {
   const [Date, setDate] = useState('');
   const [Image, setImage] = useState(null);
   const [Condition, setCondition] = useState('');
-  const [Reported, setReported] = useState('');
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [errormessage, seterrormessage] = useState('');
@@ -36,7 +35,6 @@ const AddfoundProduct = () => {
     if (!Date.trim()) newErrors.Date = "Date is required.";
     if (!Image) newErrors.Image = "Image is required.";
     if (!Condition.trim()) newErrors.Condition = "Condition is Required";
-    if (!Reported.trim()) newErrors.Reported = "Select the above otpions";
 
     return newErrors;
   }
@@ -59,7 +57,6 @@ const AddfoundProduct = () => {
     formData.append("Date", Date);
     formData.append("Image", Image);
     formData.append("Condition", Condition);
-    formData.append("Reported", Reported);
     formData.append("UserId", user.id);
 
     try {
@@ -81,7 +78,6 @@ const AddfoundProduct = () => {
         setDescription("");
         setDate("");
         setCondition("");
-        setReported("");
         setImage(null);
         setErrors({});
 
@@ -106,8 +102,8 @@ const AddfoundProduct = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-[#f0e7e7] min-h-screen">
-        <div className="max-w-screen-xl mx-auto px-4 py-8">
+      <div className="bg-[#f0e7e7] min-h-screen relative">
+        <div className="max-w-screen-xl mx-auto px-4 py-15">
           <form className="bg-[rgb(240,231,231)] shadow-lg rounded-2xl p-4 sm:p-6 w-full overflow-hidden"
             onSubmit={handleSubmit}
           >
@@ -138,7 +134,7 @@ const AddfoundProduct = () => {
 
               {/* Contact */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Contact</label>
+                <label className="text-sm font-medium mb-1">finder’s contact details</label>
                 <input type="number" className="p-3 rounded-md bg-gray-300 focus:outline-none w-full"
                   value={Contact}
                   onChange={(e) => setContact(e.target.value)}
@@ -159,7 +155,7 @@ const AddfoundProduct = () => {
 
               {/* Address */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Address</label>
+                <label className="text-sm font-medium mb-1">Current Item Location</label>
                 <textarea className="p-3 rounded-md bg-gray-300 focus:outline-none h-24 w-full"
                   value={Address}
                   onChange={(e) => setAddress(e.target.value)}
@@ -209,7 +205,7 @@ const AddfoundProduct = () => {
               </div>
 
               {/* Image Upload */}
-              <div className="flex flex-col">
+              <div className="flex flex-col ">
                 <label className="text-sm font-medium mb-1">Upload image</label>
                 <input
                   className='p-3 rounded-md bg-gray-300 focus:outline-none w-full'
@@ -236,19 +232,6 @@ const AddfoundProduct = () => {
               </div>
 
               {/* Reported To Whom */}
-              <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Reported To Whom</label>
-                <select className="p-3 rounded-md bg-gray-300 focus:outline-none w-full"
-                  value={Reported}
-                  onChange={(e) => setReported(e.target.value)}
-                >
-                  <option value="">Select Option</option>
-                  <option value="Owner">Owner</option>
-                  <option value="Police Station">Police Station</option>
-                  <option value="Other">Other</option>
-                </select>
-                {errors.Reported && <span className={errorStyle}>{errors.Reported}</span>}
-              </div>
             </div>
             <div>
               {errormessage && (
@@ -258,7 +241,7 @@ const AddfoundProduct = () => {
             <div className="flex justify-center mt-6">
               <button
                 type="submit"
-                className="bg-gray-800 text-white px-8 py-2 rounded-md hover:bg-gray-700 transition"
+                className="bg-gray-800 text-white px-8 py-2 rounded-md hover:bg-gray-700 transition hover:cursor-pointer"
               >
                 Submit
               </button>

@@ -5,6 +5,7 @@ import authRoutes from './routes/authRoutes.js'
 import cookieParser from "cookie-parser";
 import verifyToken from './Middleware/authMiddleware.js';
 import Productroutes from './routes/ProductRoutes.js'
+import Products from './routes/Getproducts.js'
 const app = express();
 
 
@@ -28,6 +29,7 @@ ConnectDatabase();
 //Routes
 app.use('/api/users', authRoutes);
 app.use('/addproducts',Productroutes);
+app.use('/getproducts',Products);
 
 app.get('/',verifyToken, async(req, res) => {
   try {

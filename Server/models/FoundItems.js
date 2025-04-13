@@ -11,7 +11,6 @@ const FoundItemSchema = new mongoose.Schema({
     ImageURL : { type: String, required: true },
     Date : { type: String, required: true },
     Condition : { type: String, required: true },
-    Reported : { type: String, required: true },
     Status: { type: Boolean, default: false },
      user: {
             type: mongoose.Schema.Types.ObjectId,

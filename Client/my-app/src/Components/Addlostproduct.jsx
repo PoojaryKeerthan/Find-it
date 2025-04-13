@@ -100,18 +100,18 @@ const Addlostproduct = () => {
     <>
       <Navbar />
       <div className="bg-[#f0e7e7] min-h-screen relative">
-        <div className="max-w-screen-xl mx-auto px-4 py-8 z-0">
+        <div className="max-w-screen-xl mx-auto px-4 py-15 z-0">
           <form onSubmit={handleSubmit} className="bg-[#f0e7e7] shadow-lg rounded-2xl p-4 sm:p-6 w-full overflow-hidden">
 
-          {loading && (
-          <div className="absolute inset-0 backdrop-blur-sm flex justify-center items-center rounded-2xl z-20">
-            <div className="flex flex-row gap-2">
-              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce" />
-              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.3s]" />
-              <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]" />
-            </div>
-          </div>
-        )}
+            {loading && (
+              <div className="absolute inset-0 backdrop-blur-sm flex justify-center items-center rounded-2xl z-20">
+                <div className="flex flex-row gap-2">
+                  <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce" />
+                  <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.3s]" />
+                  <div className="w-4 h-4 rounded-full bg-red-500 animate-bounce [animation-delay:-.5s]" />
+                </div>
+              </div>
+            )}
 
             <h2 className="text-2xl md:text-3xl font-bold text-black mb-6 text-center">
               Add the Lost-item details:
@@ -143,7 +143,7 @@ const Addlostproduct = () => {
 
               {/* Location */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Location<span className="text-red-500">*</span></label>
+                <label className="text-sm font-medium mb-1">Lost At(Location)<span className="text-red-500">*</span></label>
                 <input
                   type="text"
                   className={inputStyle}
@@ -155,7 +155,7 @@ const Addlostproduct = () => {
 
               {/* Address */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Address<span className="text-red-500">*</span></label>
+                <label className="text-sm font-medium mb-1">Return Address<span className="text-red-500">*</span></label>
                 <textarea
                   className="p-3 rounded-md bg-gray-300 focus:outline-none h-24 w-full"
                   value={Address}
@@ -166,9 +166,8 @@ const Addlostproduct = () => {
 
               {/* Category */}
               <div className="flex flex-col">
-                <label className="text-sm font-medium mb-1">Category<span className="text-red-500">*</span></label>
-                <select
-                  className="block w-full appearance-none bg-gray-300 border border-gray-400 px-4 py-3 pr-8 rounded-md leading-tight focus:outline-none"
+                <label className="text-sm font-medium mb-1">Category</label>
+                <select className="p-3 rounded-md bg-gray-300 focus:outline-none w-full"
                   value={Category}
                   onChange={(e) => setCategory(e.target.value)}
                 >

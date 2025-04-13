@@ -23,7 +23,6 @@ const foundproducts = async (req, res) => {
                     Category,
                     Description,
                     Condition,
-                    Reported,
                     Date,
                     UserId,
                 } = req.body;
@@ -35,11 +34,10 @@ const foundproducts = async (req, res) => {
                     Category,
                     Description,
                     Date,
-                    Condition:Condition,
-                    Reported:Reported,
+                    Condition: Condition,
                     ImageURL: imageUrl,
                     Status: false,
-                    user:UserId,
+                    user: UserId,
                 })
                 await newFoundItem.save();
                 res.status(201).json({
@@ -89,7 +87,7 @@ const lostproducts = async (req, res) => {
                     Date,
                     ImageURL: imageUrl,
                     Status: false,
-                    user:UserId,
+                    user: UserId,
                 });
                 await newLostItem.save();
                 res.status(201).json({

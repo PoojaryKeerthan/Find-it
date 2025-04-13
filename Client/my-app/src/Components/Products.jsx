@@ -1,27 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import MobileProductCard from "./MobileProductcard";
-const fakeLostItems = Array.from({ length: 4 }, (_, i) => ({
-  id: i,
-  itemName: `Lost Item ${i + 1}`,
-  category:`mobile${i+1}`,
-  description: "Description of the lost item...",
-  location:`location${i+1}`,
-  date:`${Date.now()}`,
-  Contact:`123456789`
-}));
-
-const fakeFoundItems = Array.from({ length: 4 }, (_, i) => ({
-  id: i,
-  itemName: `Lost Item ${i + 1}`,
-  category:`mobile${i+1}`,
-  description: "Description of the lost item...",
-  location:`location${i+1}`,
-  date:`${Date.now()}`,
-  Contact:`123456789`
-}));
+import axios from "axios";
 
 const Products = () => {
+  const [lostproducts, setlostProducts] = useState([]);
+  const [foundproducts, setfoundProducts] = useState([]);
+  const [error, setError] = useState('');
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get("http://localhost:3000/getproducts/allLostproducts");
+        const resp = await axios.get(" http://localhost:3000/getproducts/allFoundproducts");
+        setlostProducts(response.data); // Save the fetched products to state
+        setfoundProducts(resp.data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+        setError("Failed to load products.");
+      }
+    };
+
+    fetchProducts();
+  },[])
+
   return (
     <div className="px-6 py-10 mt-5 bg-gray-300 min-h-screen" >
       {/* Desktop View */}
@@ -30,9 +32,9 @@ const Products = () => {
         <div className="w-1/2">
           <h2 className="text-center text-3xl font-bold text-pink-600 mb-6" >Lost Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fakeLostItems.map((item) => (
+            {lostproducts.map((item) => (
               // <ItemCard key={item.id} {...item} />
-              <ProductCard items={item}/>
+              <ProductCard items={item} />
             ))}
           </div>
           <div className="flex justify-center">
@@ -46,9 +48,9 @@ const Products = () => {
         <div className="w-1/2">
           <h2 className="text-center text-3xl font-bold text-green-600 mb-6">Found Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fakeFoundItems.map((item) => (
+            {foundproducts.map((item) => (
               // <ItemCard key={item.id} {...item} />
-              <ProductCard items={item}/>
+              <ProductCard items={item} />
             ))}
           </div>
           <div className="flex justify-center">
@@ -66,9 +68,9 @@ const Products = () => {
         <div className="mb-10 ">
           <h2 className="text-center text-2xl font-bold text-pink-600 mb-4">Lost Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fakeLostItems.map((item) => (
+            {lostproducts.map((item) => (
               // <ItemCard key={item.id} {...item} />
-             <MobileProductCard items={item}/>
+              <MobileProductCard items={item} />
             ))}
           </div>
           <div className="flex justify-center">
@@ -83,8 +85,8 @@ const Products = () => {
         <div>
           <h2 className="text-center text-2xl font-bold text-green-600 mb-4">Found Items</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {fakeFoundItems.map((item) => (
-              <MobileProductCard items={item}/>
+            {foundproducts.map((item) => (
+              <MobileProductCard items={item} />
             ))}
           </div>
           <div className="flex justify-center">

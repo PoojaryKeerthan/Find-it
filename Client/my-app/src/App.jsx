@@ -7,6 +7,7 @@ import Register from './Auth/Register'
 import Login from './Auth/Login'
 import Addlostproduct from './Components/Addlostproduct'
 import AddfoundProduct from './Components/AddfoundProduct'
+import ViewLostProducts from './Views/ViewLostProducts'
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
@@ -16,24 +17,24 @@ import axios from 'axios'
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.auth.user);
-  console.log(user);
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/");
+        const res = await axios.get("http://localhost:3000/", { withCredentials: true });
         if (res.data.user) {
-          dispatch(setUser(res.data.user));
+          dispatch(setUser(res.data.user)); // ✅ user exists
+        } else {
+          dispatch(setUser(null)); // ✅ no user, but still set loading to false
         }
       } catch (error) {
+        dispatch(setUser(null)); // ✅ also cover error cases
         console.error("Error fetching user data", error);
       }
     };
-
-    if (!user) {
-      fetchData();
-    }
-  }, [dispatch, user]);
+  
+    fetchData(); // always call this
+  }, [dispatch]);
   return (
     <>
       <Router>
@@ -72,6 +73,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path='/ViewLostProducts' element={<ViewLostProducts />} />
         </Routes>
       </Router>
     </>

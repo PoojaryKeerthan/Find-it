@@ -19,6 +19,7 @@ const Navbar = () => {
   
       if (response.status === 200 && response.data.status === "success") {
         dispatch(logout()); // clear Redux state
+        navigate("/");
        toast.success("Logout successful.");
       } else {
         toast.error("Logout failed. Please try again.");
