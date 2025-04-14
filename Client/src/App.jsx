@@ -8,15 +8,16 @@ import Login from './Auth/Login'
 import Addlostproduct from './Components/Addlostproduct'
 import AddfoundProduct from './Components/AddfoundProduct'
 import ViewLostProducts from './Views/ViewLostProducts'
+import ViewFoundProducts from './Views/ViewFoundProducts'
+import DetailViewPage from './Views/DetailViewPage'
 import { Toaster } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { setUser } from './Redux/slices/authSlice'
 import axios from 'axios'
-
+import ScrollTotop from './Hooks/ScrollTotop'
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.auth.user);
   
   useEffect(() => {
     const fetchData = async () => {
@@ -39,6 +40,7 @@ function App() {
     <>
       <Router>
         <Toaster position="top-center" reverseOrder={false} />
+        <ScrollTotop />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route
@@ -74,6 +76,8 @@ function App() {
             }
           />
           <Route path='/ViewLostProducts' element={<ViewLostProducts />} />
+          <Route path='/ViewFoundProducts' element={<ViewFoundProducts />} />
+          <Route path='/DetailViewPage/:id' element={<DetailViewPage />} />
         </Routes>
       </Router>
     </>

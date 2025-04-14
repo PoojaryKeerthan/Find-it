@@ -5,4 +5,5 @@ import Getproducts from "../controllers/GetProductsController.js"
 const router = Router();
 router.get('/allLostproducts',Getproducts.getAllLostItems)
 router.get('/allFoundproducts',Getproducts.getAllFoundItems)
+router.get('/getitembyid/:id',Getproducts.getItemDetailsbyid)
 export default router;

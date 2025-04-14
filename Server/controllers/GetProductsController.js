@@ -20,4 +20,20 @@ const getAllLostItems = async (req, res) => {
       res.status(500).json({ message: 'Failed to fetch lost items' });
     }
   }
-export default {getAllLostItems,getAllFoundItems}
+  const getItemDetailsbyid = async(req,res)=>{
+    try {
+      const { id } = req.params;
+      const lostitem = await Lostitemdb.findById(id);
+      if(lostitem){
+        return res.json({ type: 'lost', item: lostitem });
+      }
+      const foundItem = await FoundItemdb.findById(id);
+      if (foundItem) {
+        return res.json({ type: 'found', item: foundItem });
+      }
+      res.status(404).json({ error: 'Item not found in any collection' });
+    } catch (err) {
+      res.status(500).json({ error: 'Server error' });
+    }
+  }
+export default {getAllLostItems,getAllFoundItems,getItemDetailsbyid}

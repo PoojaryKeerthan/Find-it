@@ -64,7 +64,7 @@ const Navbar = () => {
                 <>
                   <a href='#' className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">Hyy! {user.name} </a>
                   <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">My-items</a>
-                  <a href="#products" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">Lost & Found items</a>
+                  <a href="#products" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate('/')}>Lost & Found items</a>
                   <a href="#contact" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">Contact us</a>
                   <div className="relative">
       {/* Profile icon */}

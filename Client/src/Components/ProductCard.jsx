@@ -1,6 +1,8 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = (props) => {
+  const navigate = useNavigate();
 
   return (
     <div className="w-80 p-4 bg-white rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out">
@@ -18,7 +20,9 @@ const ProductCard = (props) => {
           {props.items.Status ? "Returned" : "Pending"}
         </span>
         <div className="flex justify-between items-center mt-4">
-          <button className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-pointer">View Details</button>
+          <button className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-pointer"
+          onClick={() => navigate(`/DetailViewPage/${props.items._id}`)}
+          >View Details</button>
         </div>
       </div>
     </div>
