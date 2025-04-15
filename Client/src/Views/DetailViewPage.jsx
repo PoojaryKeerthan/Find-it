@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import { FaMapMarkerAlt, FaPhoneAlt, FaCalendarAlt, FaTag, FaInfoCircle } from 'react-icons/fa'
 import { MdError } from "react-icons/md";
 import axios from 'axios';
+import MapComponent from '../Components/MapComponent';
 
 const product = {
   ProductName: "Sony Wireless Earbuds",
@@ -123,6 +124,10 @@ const DetailViewPage = () => {
             </div>
           </div>
         </div>
+        <div>
+          <h1>mapcomponent</h1>
+        <MapComponent/>
+        </div>  
       </div>
       )}
      
