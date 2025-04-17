@@ -17,11 +17,10 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests from localhost for development
-    if (origin === "http://localhost:5173" || origin === "https://find-maz2ov8vz-keerthan-p-poojarys-projects.vercel.app") {
+    
+    if (origin === "http://localhost:5173" || origin === "https://find-az2cnmlwo-keerthan-p-poojarys-projects.vercel.app/") {
       return callback(null, true);
     }
-    // Reject other origins
     return callback(new Error("Not allowed by CORS"), false);
   },
   credentials: true,
