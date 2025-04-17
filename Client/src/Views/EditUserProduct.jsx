@@ -41,7 +41,7 @@ const EditUserProduct = () => {
     const handleSave = async () => {
         try {
             setLoader(true)
-            const res = await axios.patch(`http://localhost:3000/getproducts/updateProduct/${id}`,
+            const res = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/getproducts/updateProduct/${id}`,
                 {
                     itemType: itemtype,   // 'found' or 'lost'
                     Status: status        // true or false

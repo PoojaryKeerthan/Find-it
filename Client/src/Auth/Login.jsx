@@ -32,14 +32,14 @@ const Login = () => {
       try {
         setIsLoading(true);
         const response = await axios.post(
-          "http://localhost:3000/api/users/login",
+          `${import.meta.env.VITE_BACKEND_URL}/api/users/login`,
           { Email, Password },
           { withCredentials: true }
         );
 
         if (response.status === 201) {
           // ✅ WAIT for this request before checking the user
-          const res = await axios.get("http://localhost:3000/", {
+          const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/`, {
             withCredentials: true,
           });
 
