@@ -17,14 +17,17 @@ app.use(cookieParser());
 
 app.use(cors({
   origin: (origin, callback) => {
-    
-    if (origin === "http://localhost:5173" || origin === "https://find-az2cnmlwo-keerthan-p-poojarys-projects.vercel.app/") {
-      return callback(null, true);
+    if (!origin || 
+        origin === "http://localhost:5173" || 
+        origin === "https://find-az2cnmlwo-keerthan-p-poojarys-projects.vercel.app/") {
+      callback(null, true); // allow
+    } else {
+      callback(new Error("Not allowed by CORS")); // block
     }
-    return callback(new Error("Not allowed by CORS"), false);
   },
   credentials: true,
 }));
+
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -53,6 +56,7 @@ app.get('/', verifyToken, async (req, res) => {
 
 
 app.use((err, req, res, next) => {
+  console.error('Error occurred:', err);
   if (process.env.NODE_ENV === 'development') {
     console.error(err);
     res.status(500).json({ error: err.message, stack: err.stack });
