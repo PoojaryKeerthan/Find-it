@@ -16,17 +16,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || 
-        origin === "http://localhost:5173" || 
-        origin === "https://find-az2cnmlwo-keerthan-p-poojarys-projects.vercel.app/") {
-      callback(null, true); // allow
-    } else {
-      callback(new Error("Not allowed by CORS")); // block
-    }
-  },
+  origin: [
+    "http://localhost:5173", // for local frontend
+    "https://find-az2cnmlwo-keerthan-p-poojarys-projects.vercel.app" // your Vercel frontend
+  ],
   credentials: true,
 }));
+
 
 
 
