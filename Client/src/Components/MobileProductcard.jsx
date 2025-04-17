@@ -23,9 +23,9 @@ const MobileProductCard = (props) => {
     <p><b>Location</b>: {props.items.Location}</p>
     <p><b>Date</b>: {props.items.Date}</p>
     <button className="mt-3 bg-gray-700 text-white px-4 py-2 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-     onClick={() => navigate(`/DetailViewPage/${props.items._id}`)}
+      onClick={() => props.View ? navigate(`/edituserproduct/${props.items._id}`) : navigate(`/DetailViewPage/${props.items._id}`)}
     >
-      View Details
+     {props.View ? 'Edit' : 'View Details'}
     </button>
   </div>
 

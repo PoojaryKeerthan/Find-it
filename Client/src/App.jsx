@@ -16,6 +16,8 @@ import { useEffect } from 'react'
 import { setUser } from './Redux/slices/authSlice'
 import axios from 'axios'
 import ScrollTotop from './Hooks/ScrollTotop'
+import UserProducts from './Views/UserProducts'
+import EditUserProduct from './Views/EditUserProduct'
 function App() {
   const dispatch = useDispatch();
   
@@ -78,6 +80,8 @@ function App() {
           <Route path='/ViewLostProducts' element={<ViewLostProducts />} />
           <Route path='/ViewFoundProducts' element={<ViewFoundProducts />} />
           <Route path='/DetailViewPage/:id' element={<DetailViewPage />} />
+          <Route path='/userproducts/:id' element={<UserProducts/>}/>
+          <Route path='/edituserproduct/:id' element={<EditUserProduct/>}/>
         </Routes>
       </Router>
     </>

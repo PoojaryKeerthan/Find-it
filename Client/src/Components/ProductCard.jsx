@@ -21,8 +21,8 @@ const ProductCard = (props) => {
         </span>
         <div className="flex justify-between items-center mt-4">
           <button className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 hover:cursor-pointer"
-          onClick={() => navigate(`/DetailViewPage/${props.items._id}`)}
-          >View Details</button>
+          onClick={() => props.View ? navigate(`/edituserproduct/${props.items._id}`) : navigate(`/DetailViewPage/${props.items._id}`)}
+          >{props.View ? 'Edit' : 'View Details'}</button>
         </div>
       </div>
     </div>
