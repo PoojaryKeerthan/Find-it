@@ -13,7 +13,6 @@ const Products = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-
   useEffect(() => {
     const fetchProducts = async () => {
       try {
