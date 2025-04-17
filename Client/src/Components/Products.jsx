@@ -17,8 +17,8 @@ const Products = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/getproducts/allLostproducts");
-        const resp = await axios.get(" http://localhost:3000/getproducts/allFoundproducts");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/allLostproducts`);
+        const resp = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/allFoundproducts`);
         if (response && resp) setLoading(false);
         setlostProducts(response.data); // Save the fetched products to state
         setfoundProducts(resp.data);

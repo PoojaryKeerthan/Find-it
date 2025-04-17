@@ -13,7 +13,7 @@ const ViewFoundProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/getproducts/allFoundproducts");
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/allFoundproducts`);
                 if (response) setLoading(false)
                 setfoundProducts(response.data);
             } catch (err) {

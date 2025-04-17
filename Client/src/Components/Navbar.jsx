@@ -13,7 +13,7 @@ const Navbar = () => {
   const user = useSelector((state) => state.auth.user);
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/users/logout", {
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/users/logout`, {
         withCredentials: true,
       });
   

@@ -14,7 +14,7 @@ const ViewLostProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await axios.get("http://localhost:3000/getproducts/allLostproducts");
+                const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/allLostproducts`);
                 if (response) setLoading(false);
                 setlostProducts(response.data);
             } catch (err) {

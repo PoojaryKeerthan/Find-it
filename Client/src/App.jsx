@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/", { withCredentials: true });
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/`, { withCredentials: true });
         if (res.data.user) {
           dispatch(setUser(res.data.user)); // ✅ user exists
         } else {

@@ -15,7 +15,7 @@ const UserProducts = () => {
   useEffect(() => {
     const getUserProducts = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/getproducts/getitemsbyuserid/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/getitemsbyuserid/${id}`);
         if (res) setLoading(false);
         setProducts(res.data);
       } catch (error) {

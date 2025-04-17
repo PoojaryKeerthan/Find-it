@@ -62,7 +62,7 @@ const AddfoundProduct = () => {
     try {
       seterrormessage('');
       setLoading(true);
-      const response = await axios.post("http://localhost:3000/addproducts/found-products", formData, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/addproducts/found-products`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
