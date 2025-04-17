@@ -39,7 +39,7 @@ const ViewFoundProducts = () => {
                     <div className="px-6 py-10 mt-5 bg-gray-300 " >
                         <div className="hidden lg:block px-8 mt-10">
                             <div className='flex flex-col items-center justify-center '>
-                                <h2 className="text-center text-3xl font-bold text-green-600 mb-6">Found Items</h2>
+                                <h2 className="text-center text-3xl font-bold text-gray-600 mb-6 underline">Found Items</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                                     {foundproducts.map((item, index) => (
                                         <ProductCard key={index} items={item} />
@@ -49,7 +49,7 @@ const ViewFoundProducts = () => {
                         </div>
                         <div className="lg:hidden">
                             <div className='mt-4'>
-                                <h2 className="text-center text-2xl font-bold text-green-600 mb-4">Found Items</h2>
+                                <h2 className="text-center text-2xl font-bold text-gray-600 mb-4 underline">Found Items</h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {foundproducts.map((item) => (
                                         <MobileProductCard items={item} />

@@ -25,10 +25,17 @@ const Heroimage = () => {
                         fullScreen: { enable: false },
                         background: { color: "#000" },
                         particles: {
-                            color: { value: "#ff69b4" },
+                            number: {
+                                value: 80, // 👈 Adjust this value (e.g., 20 for fewer, 100+ for more)
+                                density: {
+                                  enable: true,
+                                  area: 800, // Controls how packed the particles are
+                                },
+                              },
+                            color: { value: "#fff" },
                             move: {
                                 enable: true,
-                                speed: 2,
+                                speed: 1,
                             },
                         },
                     }}
@@ -37,7 +44,7 @@ const Heroimage = () => {
             <div className="flex flex-col lg:flex-row">
                 {/* Text Section */}
                 <div className="z-10 px-4 lg:px-20 pt-8 text-center lg:text-left">
-                    <h1 className="text-8xl sm:text-7xl lg:text-9xl font-extrabold mb-6 text-pink-600 font-sans leading-tight">
+                    <h1 className="text-8xl sm:text-7xl lg:text-9xl font-extrabold mb-6 text-white font-sans leading-tight">
                         Find-It
                     </h1>
                     <p className="text-base sm:text-lg lg:text-2xl text-gray-300 max-w-3xl mx-auto lg:mx-0 mt-6">

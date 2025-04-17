@@ -61,7 +61,9 @@ const Navbar = () => {
             <div className="hidden lg:flex space-x-6 items-center">
               {user ? (
                 <>
-                  <a href='#' className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">Hyy! {user.name} </a>
+                  <a className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate('/')}>Home</a>
+                  <a className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate('/Addlostproduct')}>AddLostitem</a>
+                  <a className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate('/Addfoundproduct')}>AddFounditem</a>
                   <a href="#" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate(`/userproducts/${user.id}`)}>My-items</a>
                   <a href="#products" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer" onClick={()=>navigate('/')}>Lost & Found items</a>
                   <a href="#contact" className="text-gray-700 dark:text-white hover:underline hover:text-pink-400 hover:cursor-pointer">Contact us</a>
@@ -119,9 +121,11 @@ const Navbar = () => {
           <div className="p-6 space-y-6 mt-10">
             {user ? (
               <>
-                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => {setIsOpen(false); navigate("/")}}>Hyy! {user.name}</a>
-                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => setIsOpen(false)}>My-items</a>
-                <a href="#products" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => setIsOpen(false)}>Lost & Found items</a>
+                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => {setIsOpen(false); navigate("/")}}>Home</a>
+                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => {setIsOpen(false); navigate(`/userproducts/${user.id}`)}}>My-items</a>
+                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() =>{ setIsOpen(false);navigate('/Addlostproduct')}}>AddLostitem</a>
+                <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() =>{ setIsOpen(false);navigate('/Addfoundproduct')}}>AddFounditem</a>
+                <a href="#products" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => {setIsOpen(false); navigate('/')}}>Lost & Found items</a>
                 <a href="#contact" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => setIsOpen(false)}>Contact us</a>
                 <a href="#" className="block text-gray-800 dark:text-white text-lg hover:cursor-pointer" onClick={() => {setIsOpen(false);handleLogout()}}>Logout</a>
               </>

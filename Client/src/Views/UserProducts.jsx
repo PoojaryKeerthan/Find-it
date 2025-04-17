@@ -42,10 +42,10 @@ const UserProducts = () => {
           </div>
         ):(
           <div>
-        <div className="hidden lg:flex gap-10">
+        <div className="hidden lg:flex gap-10 mt-6">
             {/* Lost Items */}
             <div className="w-1/2">
-              <h2 className="text-center text-3xl font-bold text-pink-600 mb-6" >Lost Items</h2>
+              <h2 className="text-center text-3xl font-bold text-gray-700 mb-6 underline" >Lost Items</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.lostItems.map((item) => (
                   // <ItemCard key={item.id} {...item} />
@@ -56,7 +56,7 @@ const UserProducts = () => {
 
             {/* Found Items */}
             <div className="w-1/2">
-              <h2 className="text-center text-3xl font-bold text-green-600 mb-6">Found Items</h2>
+              <h2 className="text-center text-3xl font-bold text-gray-700 mb-6 underline">Found Items</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.foundItems.map((item) => (
                   // <ItemCard key={item.id} {...item} />
@@ -66,10 +66,10 @@ const UserProducts = () => {
             </div>
           </div>
           {/* Mobile View */}
-          <div className="lg:hidden">
+          <div className="lg:hidden mt-6">
             {/* Lost Items */}
             <div className="mb-10 ">
-              <h2 className="text-center text-2xl font-bold text-pink-600 mb-4">Lost Items</h2>
+              <h2 className="text-center text-2xl font-bold text-gray-700 mb-4 underline">Lost Items</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.lostItems.map((item) => (
                   // <ItemCard key={item.id} {...item} />
@@ -81,7 +81,7 @@ const UserProducts = () => {
 
             {/* Found Items */}
             <div>
-              <h2 className="text-center text-2xl font-bold text-green-600 mb-4">Found Items</h2>
+              <h2 className="text-center text-2xl font-bold text-gray-700 mb-4 underline">Found Items</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {products.foundItems.map((item) => (
                   <MobileProductCard items={item} View={true}/>

@@ -109,7 +109,7 @@ const EditUserProduct = () => {
                                 <div className="relative w-full rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500">
                                     <img
                                         src={item.ImageURL}
-                                        className="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[550px] object-cover object-center transition-transform duration-300 hover:scale-105"
+                                        className="w-full h-[300px] sm:h-[400px] md:h-[450px] lg:h-[665px] object-cover object-center transition-transform duration-300 hover:scale-105"
                                     />
                                     <div className="absolute bottom-4 left-4 bg-black/60 px-4 py-2 rounded-xl text-white">
                                         <h2 className="text-xl font-semibold">{item.ProductName}</h2>
@@ -161,7 +161,7 @@ const EditUserProduct = () => {
                                         </div>
                                         <button
                                             className={`w-full sm:w-auto px-6 py-3 text-lg font-medium border rounded-lg transition-all
-                                                     ${item.Status
+                                                     ${(item.Status || !status)
                                                     ? 'border-gray-400 text-gray-400 bg-gray-100 cursor-not-allowed'
                                                     : 'border-gray-600 text-gray-800 hover:text-white hover:bg-gray-800 cursor-pointer'
                                                 }`}
