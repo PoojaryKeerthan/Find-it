@@ -16,11 +16,13 @@ const DetailViewPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isActivePopup, setIsActivePopup] = useState(false);
-
+  console.log(`${import.meta.env.VITE_BACKEND_URL}/getproducts/getitembyid/${id}`);
+  
+  
   useEffect(() => {
     const getItemDetails = async () => {
       try {
-        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}getproducts/getitembyid/${id}`);
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/getitembyid/${id}`);
         if (res) setLoading(false);
         setItem(res.data.item);
         setItemtype(res.data.type);
