@@ -63,7 +63,7 @@ const Products = () => {
             </div>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {lostproducts.map((item) => (
+                {lostproducts.slice(0, 4).map((item) => (
                   // <ItemCard key={item.id} {...item} />
                   <ProductCard items={item} />
                 ))}
@@ -88,7 +88,7 @@ const Products = () => {
               </button>
             </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {foundproducts.map((item) => (
+                {foundproducts.slice(0, 4).map((item) => (
                   // <ItemCard key={item.id} {...item} />
                   <ProductCard items={item} />
                 ))}
@@ -112,7 +112,7 @@ const Products = () => {
               </h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {lostproducts.map((item) => (
+                {lostproducts.slice(0, 4).map((item) => (
                   // <ItemCard key={item.id} {...item} />
                   <MobileProductCard items={item} />
                 ))}
@@ -133,7 +133,7 @@ const Products = () => {
                 Found Items
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {foundproducts.map((item) => (
+                {foundproducts.slice(0, 4).map((item) => (
                   <MobileProductCard items={item} />
                 ))}
               </div>

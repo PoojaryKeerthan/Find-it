@@ -16,7 +16,6 @@ const DetailViewPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [isActivePopup, setIsActivePopup] = useState(false);
-  console.log(`${import.meta.env.VITE_BACKEND_URL}/getproducts/getitembyid/${id}`);
   
   
   useEffect(() => {

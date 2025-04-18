@@ -20,7 +20,7 @@ const EditUserProduct = () => {
     useEffect(() => {
         const getItemDetails = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/getproducts/getitembyid/${id}`);
+                const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/getproducts/getitembyid/${id}`);
                 if (res) setLoading(false);
                 setItem(res.data.item);
                 setItemtype(res.data.type);
@@ -43,8 +43,8 @@ const EditUserProduct = () => {
             setLoader(true)
             const res = await axios.patch(`${import.meta.env.VITE_BACKEND_URL}/getproducts/updateProduct/${id}`,
                 {
-                    itemType: itemtype,   // 'found' or 'lost'
-                    Status: status        // true or false
+                    itemType: itemtype,  
+                    Status: status        
                 });
             console.log(res);
 
