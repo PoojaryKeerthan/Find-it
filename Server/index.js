@@ -18,7 +18,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: [
     "http://localhost:5173", // for local frontend
-    "https://find-it-olive.vercel.app/"
+    "https://find-it-olive.vercel.app"
   ],
   credentials: true,
 }));
